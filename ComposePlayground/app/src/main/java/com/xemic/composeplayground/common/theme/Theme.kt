@@ -1,4 +1,4 @@
-package com.xemic.composeplayground.ui.theme
+package com.xemic.composeplayground.common.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
