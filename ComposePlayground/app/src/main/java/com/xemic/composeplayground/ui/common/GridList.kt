@@ -30,11 +30,6 @@ fun GridList(
         }
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun GridListPreview() {
-    GridList(modifier = Modifier, ItemInfoListSample)
-}
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -60,9 +55,4 @@ fun GridListItem(
             )
         }
     }
-}
-@Preview(showBackground = true)
-@Composable
-fun GridListItemPreview() {
-    GridListItem(Modifier, ItemInfoListSample[0])
 }

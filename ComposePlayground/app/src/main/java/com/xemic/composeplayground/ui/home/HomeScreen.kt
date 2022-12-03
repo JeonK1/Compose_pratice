@@ -32,14 +32,6 @@ fun HomeScreen(
         )
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    HomeScreen(
-        currentSection = HomeSections[0],
-        onSectionChanged = { }
-    )
-}
 
 @Composable
 fun TopSectionBar(
@@ -60,15 +52,6 @@ fun TopSectionBar(
             }
         }
     }
-}
-@Preview(showBackground = true)
-@Composable
-fun TopSectionBarPreview() {
-    TopSectionBar(
-        allSections = HomeSections,
-        onTabSelected = { },
-        currentScreen = HomeSections[0]
-    )
 }
 
 @Composable
@@ -91,6 +74,17 @@ fun TopBarItem(
         color = if(selected) Color.Black else Color.LightGray
     )
 }
+
+@Preview(showBackground = true)
+@Composable
+fun TopSectionBarPreview() {
+    TopSectionBar(
+        allSections = HomeSections,
+        onTabSelected = { },
+        currentScreen = HomeSections[0]
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 fun TopBarItemPreview() {

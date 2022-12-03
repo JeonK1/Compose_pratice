@@ -8,9 +8,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun MyTopBar(currentScreen: Destination) {
+fun MyTopBar(currentScreen: CommonNavigateItem) {
     Text(
-        text = currentScreen.name,
+        text = currentScreen.appBarName,
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth()
     )
@@ -18,5 +18,5 @@ fun MyTopBar(currentScreen: Destination) {
 @Preview(showBackground = true)
 @Composable
 fun MyTopBarPreview() {
-    MyTopBar(Destination.Home)
+    MyTopBar(BottomNavigateItem.Home)
 }

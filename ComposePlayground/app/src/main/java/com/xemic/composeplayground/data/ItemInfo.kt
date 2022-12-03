@@ -28,3 +28,5 @@ val ItemInfoListSample = listOf(
     ItemInfo(16, "진실된 식료품","국민 아이스크림", "https://img.vogue.co.kr/vogue/2019/03/style_5c9c8c4ba29e7-930x523.jpg", 53000),
     ItemInfo(17, "진실된 식료품","요맘떄 아이스크림", "https://image.homeplus.kr/td/868a01f5-76a0-482d-be7b-b5bb04b19bb0", 9000),
 )
+
+val CategoryListSample = ItemInfoListSample.map { it.brandName }.toSet().toList()

@@ -17,11 +17,11 @@ import com.xemic.composeplayground.ui.category.CategoryScreen
 import com.xemic.composeplayground.ui.home.HomeScreen
 import com.xemic.composeplayground.ui.mypage.MyPageScreen
 import com.xemic.composeplayground.common.theme.ComposePlaygroundTheme
-import com.xemic.composeplayground.ui.Destination
-import com.xemic.composeplayground.ui.MyBottomNavigation
-import com.xemic.composeplayground.ui.MyMainScreens
-import com.xemic.composeplayground.ui.MyTopBar
+import com.xemic.composeplayground.data.CategoryListSample
+import com.xemic.composeplayground.data.ItemInfoListSample
+import com.xemic.composeplayground.ui.*
 import com.xemic.composeplayground.ui.home.HomeSections
+import com.xemic.composeplayground.ui.itemlist.ItemListScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,9 @@ fun MainApp() {
         val currentBackStack by navController.currentBackStackEntryAsState()
         val currentDestination = currentBackStack?.destination
         val currentScreen =
-            MyMainScreens.find { it.route == currentDestination?.route } ?: Destination.Home
+            BottomNavScreens.find { it.route == currentDestination?.route }
+                ?: CommonNavScreens.find { it.route == currentDestination?.route }
+                ?: BottomNavigateItem.Home
 
         var currentSection by rememberSaveable { mutableStateOf(HomeSections[0].route) }
 
@@ -47,7 +49,7 @@ fun MainApp() {
             topBar = { MyTopBar(currentScreen) },
             bottomBar = {
                 MyBottomNavigation(
-                    allScreens = MyMainScreens,
+                    allScreens = BottomNavScreens,
                     onTabSelected = { screen ->
                         navController.navigateSingleTop(screen.route)
                     },
@@ -57,10 +59,10 @@ fun MainApp() {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = Destination.Home.route,
+                startDestination = BottomNavigateItem.Home.route,
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable(route = Destination.Home.route) {
+                composable(route = BottomNavigateItem.Home.route) {
                     HomeScreen(
                         currentSection = HomeSections.find { it.route == currentSection } ?: HomeSections[0],
                         onSectionChanged = { section ->
@@ -68,11 +70,30 @@ fun MainApp() {
                         }
                     )
                 }
-                composable(route = Destination.Category.route) {
-                    CategoryScreen()
+
+                composable(route = BottomNavigateItem.Category.route) {
+                    CategoryScreen(
+                        onCategoryClicked = { categoryIndex ->
+                            navController.navigateSingleTop(
+                                CommonNavigateItem.CategoryList.makeRouteWithArgs(CategoryListSample[categoryIndex])
+                            )
+                        }
+                    )
                 }
-                composable(route = Destination.MyPage.route) {
+
+                composable(route = BottomNavigateItem.MyPage.route) {
                     MyPageScreen()
+                }
+
+                composable(
+                    route = CommonNavigateItem.CategoryList.route,
+                    arguments = CommonNavigateItem.CategoryList.arguments
+                ) {
+                    it.arguments?.getString(CommonNavigateItem.CategoryList.categoryName)?.let { categoryName ->
+                        ItemListScreen(
+                            data = ItemInfoListSample.filter { itemInfo -> itemInfo.brandName == categoryName }
+                        )
+                    }
                 }
             }
         }

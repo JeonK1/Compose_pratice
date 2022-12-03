@@ -25,14 +25,6 @@ fun SectionScreen(modifier: Modifier = Modifier, currentSection: Section) {
         )
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun SectionScreenPreview() {
-    SectionScreen(
-        currentSection = HomeSections[0]
-    )
-}
-
 
 data class Section(
     val route: String,
