@@ -9,8 +9,7 @@ import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
+import coil.compose.SubcomposeAsyncImage
 import com.xemic.composeplayground.common.model.Result
 import com.xemic.composeplayground.common.model.UiState
 import com.xemic.composeplayground.data.model.ItemInfo
@@ -44,14 +43,13 @@ fun ItemDetailMainScreen(
     }
 }
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun ItemDetailSuccess(
     modifier: Modifier = Modifier,
     itemInfo: ItemInfo
 ) {
     Column {
-        GlideImage(
+        SubcomposeAsyncImage(
             model = itemInfo.itemImageUrl,
             contentDescription = itemInfo.itemName,
             modifier = modifier.size(300.dp, 300.dp)

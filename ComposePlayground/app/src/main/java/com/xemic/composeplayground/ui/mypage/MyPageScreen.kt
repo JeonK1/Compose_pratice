@@ -12,8 +12,7 @@ import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
+import coil.compose.SubcomposeAsyncImage
 import com.xemic.composeplayground.common.model.UiState
 import com.xemic.composeplayground.common.model.Result
 import com.xemic.composeplayground.data.model.UserInfo
@@ -52,7 +51,6 @@ fun MyPageScreen(
     }
 }
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun MyPageSuccess(
     modifier: Modifier = Modifier,
@@ -77,14 +75,14 @@ fun MyPageSuccess(
                 Text("구매했던 상품")
                 Text("내 쿠폰")
                 Text("문의 내역")
+                Text("로그아웃")
                 sampleImage.value?.let { image ->
-                    GlideImage(
+                    SubcomposeAsyncImage(
                         model = image.imageUrl,
                         contentDescription = image.author,
                         modifier = modifier.size(300.dp, 300.dp)
                     )
                 }
-                Text("로그아웃")
             }
         }
         MyPageFooter()

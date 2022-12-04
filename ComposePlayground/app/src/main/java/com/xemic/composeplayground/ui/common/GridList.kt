@@ -12,8 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
+import coil.compose.SubcomposeAsyncImage
 import com.xemic.composeplayground.data.model.ItemInfo
 import com.xemic.composeplayground.ui.itemdetail.ItemDetailActivity
 
@@ -46,7 +45,6 @@ fun GridList(
     }
 }
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun GridListItem(
     modifier: Modifier = Modifier,
@@ -60,7 +58,7 @@ fun GridListItem(
         })
     ) {
         Column {
-            GlideImage(
+            SubcomposeAsyncImage(
                 model = itemInfo.itemImageUrl,
                 contentDescription = itemInfo.itemName,
                 modifier = modifier.size(300.dp, 300.dp)

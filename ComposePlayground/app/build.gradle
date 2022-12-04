@@ -76,8 +76,8 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$compose_navigation_version"
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
 
-    // Url
-    implementation "com.github.bumptech.glide:compose:$compose_glide"
+    // Load image from Url
+    implementation "io.coil-kt:coil-compose:2.2.2"
 
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
