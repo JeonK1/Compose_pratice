@@ -14,11 +14,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.xemic.composeplayground.common.navigateSingleTop
+import com.xemic.composeplayground.common.ext.navigateSingleTop
 import com.xemic.composeplayground.ui.mypage.MyPageScreen
 import com.xemic.composeplayground.common.theme.ComposePlaygroundTheme
 import com.xemic.composeplayground.data.CategoryListSample
-import com.xemic.composeplayground.ui.*
 import com.xemic.composeplayground.ui.category.CategoryMainScreen
 import com.xemic.composeplayground.ui.home.*
 import com.xemic.composeplayground.ui.itemlist.ItemListScreen

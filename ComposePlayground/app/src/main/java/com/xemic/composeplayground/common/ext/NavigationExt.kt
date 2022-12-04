@@ -1,4 +1,4 @@
-package com.xemic.composeplayground.common
+package com.xemic.composeplayground.common.ext
 
 import androidx.navigation.NavController
 
