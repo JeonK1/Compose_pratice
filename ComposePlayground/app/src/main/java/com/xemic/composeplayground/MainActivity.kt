@@ -22,6 +22,7 @@ import com.xemic.composeplayground.data.ItemInfoListSample
 import com.xemic.composeplayground.ui.*
 import com.xemic.composeplayground.ui.home.HomeSections
 import com.xemic.composeplayground.ui.itemlist.ItemListScreen
+import com.xemic.composeplayground.ui.login.LoginScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +63,7 @@ fun MainApp() {
                 startDestination = BottomNavigateItem.Home.route,
                 modifier = Modifier.padding(innerPadding)
             ) {
+                // Home 화면
                 composable(route = BottomNavigateItem.Home.route) {
                     HomeScreen(
                         currentSection = HomeSections.find { it.route == currentSection } ?: HomeSections[0],
@@ -71,6 +73,7 @@ fun MainApp() {
                     )
                 }
 
+                // Category 화면
                 composable(route = BottomNavigateItem.Category.route) {
                     CategoryScreen(
                         onCategoryClicked = { categoryIndex ->
@@ -81,10 +84,19 @@ fun MainApp() {
                     )
                 }
 
+                // 마이페이지 화면
                 composable(route = BottomNavigateItem.MyPage.route) {
-                    MyPageScreen()
+                    MyPageScreen(
+                        navigateToLoginScreen = { navController.navigateSingleTop(CommonNavigateItem.Login.route) }
+                    )
                 }
 
+                // 로그인 화면
+                composable(route = CommonNavigateItem.Login.route) {
+                    LoginScreen()
+                }
+
+                // 아이템 리스트 화면
                 composable(
                     route = CommonNavigateItem.CategoryList.route,
                     arguments = CommonNavigateItem.CategoryList.arguments

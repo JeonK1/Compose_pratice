@@ -25,7 +25,6 @@ fun MyBottomNavigation(
         modifier = modifier
     ) {
         allScreens.forEach { screen ->
-            Log.e("test", "${screen.route} ${screen.bottomNavRoute} ${currentScreen.bottomNavRoute}")
             BottomNavigationItem(
                 icon = {
                     Icon(
@@ -44,6 +43,12 @@ sealed interface CommonNavigateItem {
     val route: String
     val bottomNavRoute: String
     var appBarName: String
+
+    object Login: CommonNavigateItem {
+        override val route = "login"
+        override val bottomNavRoute = BottomNavigateItem.MyPage.route
+        override var appBarName = "로그인"
+    }
 
     object CategoryList: CommonNavigateItem {
         const val baseRoute = "category_list"
