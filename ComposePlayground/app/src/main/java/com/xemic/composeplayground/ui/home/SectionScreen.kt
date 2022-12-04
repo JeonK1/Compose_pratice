@@ -19,7 +19,7 @@ fun SectionScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .padding(8.dp)
+            .padding(start = 16.dp, end = 16.dp)
     ) {
         GridList(
             modifier = modifier,

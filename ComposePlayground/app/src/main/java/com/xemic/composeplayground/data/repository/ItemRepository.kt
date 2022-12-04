@@ -10,14 +10,14 @@ class ItemRepository @Inject constructor(
 ) {
     fun getSectionListAll() = getItemListAll().let { list ->
         listOf(
-            Section("one", list.map { list[Random.nextInt(0, list.size-1)] }),
-            Section("two", list.map { list[Random.nextInt(0, list.size-1)] }),
-            Section("three", list.map { list[Random.nextInt(0, list.size-1)] }),
-            Section("four", list.map { list[Random.nextInt(0, list.size-1)] }),
-            Section("five", list.map { list[Random.nextInt(0, list.size-1)] }),
-            Section("six", list.map { list[Random.nextInt(0, list.size-1)] }),
-            Section("seven", list.map { list[Random.nextInt(0, list.size-1)] }),
-            Section("eight", list.map { list[Random.nextInt(0, list.size-1)] }),
+            Section("추천상품", list.map { list[Random.nextInt(0, list.size-1)] }),
+            Section("인테리어", list.map { list[Random.nextInt(0, list.size-1)] }),
+            Section("식료품", list.map { list[Random.nextInt(0, list.size-1)] }),
+            Section("가구", list.map { list[Random.nextInt(0, list.size-1)] }),
+            Section("가전제품", list.map { list[Random.nextInt(0, list.size-1)] }),
+            Section("선물하기", list.map { list[Random.nextInt(0, list.size-1)] }),
+            Section("지마켓해커톤", list.map { list[Random.nextInt(0, list.size-1)] }),
+            Section("마지막섹션", list.map { list[Random.nextInt(0, list.size-1)] }),
         )
     }
 
