@@ -30,14 +30,3 @@ data class Section(
     val route: String,
     val itemList: List<ItemInfo>
 )
-
-val HomeSections = listOf(
-    Section("one", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-    Section("two", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-    Section("three", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-    Section("four", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-    Section("five", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-    Section("six", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-    Section("seven", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-    Section("eight", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-)

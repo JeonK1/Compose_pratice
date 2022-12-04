@@ -3,8 +3,20 @@ buildscript {
         compose_ui_version = '1.1.1'
         compose_navigation_version = '2.5.0'
         compose_glide = '1.0.0-alpha.1'
+        lifecycle_version = '2.5.1'
+        compose_livedata = '1.2.0'
+        hilt_version = '2.44'
     }
-}// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.44'
+    }
+}
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id 'com.android.application' version '7.3.1' apply false
     id 'com.android.library' version '7.3.1' apply false

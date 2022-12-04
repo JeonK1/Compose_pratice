@@ -1,27 +1,30 @@
-package com.xemic.composeplayground.ui.home
-
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.xemic.composeplayground.ui.home.Section
+import com.xemic.composeplayground.ui.home.SectionScreen
 
 @Composable
-fun HomeScreen(
+fun HomeSuccess(
     modifier: Modifier = Modifier,
     currentSection: Section,
-    onSectionChanged: (Section) -> Unit
+    onSectionChanged: (Int) -> Unit,
+    sectionList: List<Section>
 ) {
     Column {
         TopSectionBar(
-            allSections = HomeSections,
-            onTabSelected = { section ->
-                onSectionChanged(section)
+            allSections = sectionList,
+            onTabSelected = { index ->
+                onSectionChanged(index)
             },
             currentScreen = currentSection
         )
@@ -37,17 +40,17 @@ fun HomeScreen(
 fun TopSectionBar(
     modifier: Modifier = Modifier,
     allSections: List<Section>,
-    onTabSelected: (Section) -> Unit,
+    onTabSelected: (Int) -> Unit,
     currentScreen: Section
 ) {
     LazyRow(modifier) {
-        allSections.forEach { section ->
+        allSections.forEachIndexed { index, section ->
             item {
                 TopBarItem(
                     text = section.route,
                     selected = section == currentScreen
                 ) {
-                    onTabSelected(section)
+                    onTabSelected(index)
                 }
             }
         }
@@ -72,16 +75,6 @@ fun TopBarItem(
             ),
         text = text,
         color = if(selected) Color.Black else Color.LightGray
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun TopSectionBarPreview() {
-    TopSectionBar(
-        allSections = HomeSections,
-        onTabSelected = { },
-        currentScreen = HomeSections[0]
     )
 }
 
