@@ -1,4 +1,4 @@
-package com.xemic.composeplayground
+package com.xemic.composeplayground.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,12 +18,13 @@ import com.xemic.composeplayground.common.navigateSingleTop
 import com.xemic.composeplayground.ui.mypage.MyPageScreen
 import com.xemic.composeplayground.common.theme.ComposePlaygroundTheme
 import com.xemic.composeplayground.data.CategoryListSample
-import com.xemic.composeplayground.data.ItemInfoListSample
 import com.xemic.composeplayground.ui.*
 import com.xemic.composeplayground.ui.category.CategoryMainScreen
 import com.xemic.composeplayground.ui.home.*
 import com.xemic.composeplayground.ui.itemlist.ItemListScreen
 import com.xemic.composeplayground.ui.login.LoginScreen
+import com.xemic.composeplayground.common.model.Result
+import com.xemic.composeplayground.common.model.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -43,12 +44,12 @@ fun MainAppScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val homeScrollState = rememberLazyGridState()
-    val homeUiState by produceState(initialValue = HomeViewModel.UiState(isLoading = true)) {
+    val homeUiState by produceState(initialValue = UiState<List<Section>>(isLoading = true)) {
         val itemListResult = viewModel.sectionList
-        value = if(itemListResult is HomeViewModel.Result.Success) {
-            HomeViewModel.UiState(sectionList = itemListResult.data)
+        value = if(itemListResult is Result.Success) {
+            UiState(data = itemListResult.data)
         } else {
-            HomeViewModel.UiState(isError = true)
+            UiState(isError = true)
         }
     }
 
@@ -127,7 +128,7 @@ fun MainAppScreen(
                 ) {
                     it.arguments?.getString(CommonNavigateItem.CategoryList.categoryName)?.let { categoryName ->
                         ItemListScreen(
-                            data = ItemInfoListSample.filter { itemInfo -> itemInfo.brandName == categoryName }
+                            categoryName = categoryName
                         )
                     }
                 }

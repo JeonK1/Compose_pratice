@@ -1,6 +1,5 @@
 package com.xemic.composeplayground.ui
 
-import android.util.Log
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -9,10 +8,8 @@ import androidx.compose.material.icons.filled.Call
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.xemic.composeplayground.ui.mypage.MyPageScreen
 
 @Composable
 fun MyBottomNavigation(

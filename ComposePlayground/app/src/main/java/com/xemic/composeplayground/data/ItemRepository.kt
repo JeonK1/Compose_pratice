@@ -7,26 +7,28 @@ import kotlin.random.Random
 class ItemRepository @Inject constructor(
     private val remoteDataSource: ItemRemoteDataSource
 ) {
-    fun getSectionListAll() = listOf(
-        Section("one", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-        Section("two", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-        Section("three", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-        Section("four", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-        Section("five", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-        Section("six", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-        Section("seven", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-        Section("eight", ItemInfoListSample.map { itemInfo -> ItemInfoListSample[Random.nextInt(0, ItemInfoListSample.size-1)] }),
-    )
+    fun getSectionListAll() = getItemListAll().let { list ->
+        listOf(
+            Section("one", list.map { list[Random.nextInt(0, ItemInfoListSample.size-1)] }),
+            Section("two", list.map { list[Random.nextInt(0, ItemInfoListSample.size-1)] }),
+            Section("three", list.map { list[Random.nextInt(0, ItemInfoListSample.size-1)] }),
+            Section("four", list.map { list[Random.nextInt(0, ItemInfoListSample.size-1)] }),
+            Section("five", list.map { list[Random.nextInt(0, ItemInfoListSample.size-1)] }),
+            Section("six", list.map { list[Random.nextInt(0, ItemInfoListSample.size-1)] }),
+            Section("seven", list.map { list[Random.nextInt(0, ItemInfoListSample.size-1)] }),
+            Section("eight", list.map { list[Random.nextInt(0, ItemInfoListSample.size-1)] }),
+        )
+    }
 
     fun getItemListAll() =
-        remoteDataSource.ItemInfoListSample
+        remoteDataSource.getItemListAll()
 
     fun getItem(itemNo: Int) =
-        remoteDataSource.ItemInfoListSample.find { it.itemNo == itemNo }
+        getItemListAll().find { it.itemNo == itemNo }
 
     fun getItemListByCategory(categoryName: String) =
-        remoteDataSource.ItemInfoListSample.find { it.brandName == categoryName }
+        getItemListAll().filter { it.brandName == categoryName }
 
     fun getCategoryList() =
-        ItemInfoListSample.map { it.brandName }.toSet().toList()
+        getItemListAll().map { it.brandName }.toSet().toList()
 }

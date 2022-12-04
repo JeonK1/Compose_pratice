@@ -1,28 +1,29 @@
 package com.xemic.composeplayground.ui.home
 
-import HomeSuccess
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import com.xemic.composeplayground.common.model.UiState
+import com.xemic.composeplayground.ui.common.EmptyScreen
+import com.xemic.composeplayground.ui.common.LoadingScreen
 
 @Composable
 fun HomeMainScreen(
     modifier: Modifier = Modifier,
-    uiState: HomeViewModel.UiState,
+    uiState: UiState<List<Section>>,
     scrollState: LazyGridState,
     currentSectionIndex: Int,
     onSectionChanged: (Int) -> Unit
 ) {
     when {
-        uiState.isLoading -> HomeLoading()
-        uiState.sectionList.isNotEmpty() -> HomeSuccess(
+        uiState.isLoading -> LoadingScreen()
+        uiState.data?.isNotEmpty() == true -> HomeSuccess(
             modifier = modifier,
-            currentSection = uiState.sectionList[currentSectionIndex],
+            currentSection = uiState.data[currentSectionIndex],
             onSectionChanged = onSectionChanged,
-            sectionList = uiState.sectionList,
+            sectionList = uiState.data,
             scrollState = scrollState
         )
-        else -> HomeEmpty()
+        else -> EmptyScreen(message = "아이템이 존재하지 않습니다")
     }
 }

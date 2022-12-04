@@ -1,4 +1,4 @@
-package com.xemic.composeplayground.ui.home
+package com.xemic.composeplayground.ui.common
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,21 +9,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun HomeEmpty(
-    modifier: Modifier = Modifier
+fun EmptyScreen(
+    modifier: Modifier = Modifier,
+    message: String
 ) {
     Box(modifier = modifier
         .fillMaxSize()
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = "제품이 존재하지 않습니다."
+            text = message
         )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun HomeEmptyPreview() {
-    HomeEmpty()
+fun EmptyScreenPreview() {
+    EmptyScreen(
+        message = "제품이 존재하지 않습니다."
+    )
 }

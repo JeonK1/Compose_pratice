@@ -1,7 +1,8 @@
+package com.xemic.composeplayground.ui.home
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.selection.selectable
@@ -12,8 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.xemic.composeplayground.ui.home.Section
-import com.xemic.composeplayground.ui.home.SectionScreen
 
 @Composable
 fun HomeSuccess(

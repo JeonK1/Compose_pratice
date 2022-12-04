@@ -1,19 +1,19 @@
-package com.xemic.composeplayground.ui.home
+package com.xemic.composeplayground.ui.category
 
 import androidx.lifecycle.ViewModel
 import com.xemic.composeplayground.data.ItemRepository
+import com.xemic.composeplayground.common.model.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import com.xemic.composeplayground.common.model.Result
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class CategoryViewModel @Inject constructor(
     private val repository: ItemRepository
-) : ViewModel() {
-    val sectionList: Result<List<Section>>
+): ViewModel() {
+    val categoryList: Result<List<String>>
         get() = try {
-            val sections = repository.getSectionListAll()
-            Result.Success(sections)
+            val categories = repository.getCategoryList()
+            Result.Success(categories)
         } catch (exception: Exception) {
             Result.Error(exception)
         }

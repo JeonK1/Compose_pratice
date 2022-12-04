@@ -1,40 +1,38 @@
 package com.xemic.composeplayground.ui.category
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.xemic.composeplayground.data.CategoryListSample
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.xemic.composeplayground.common.model.Result
+import com.xemic.composeplayground.common.model.UiState
+import com.xemic.composeplayground.ui.common.EmptyScreen
+import com.xemic.composeplayground.ui.common.LoadingScreen
 
 @Composable
-fun CategoryMainScreen(onCategoryClicked: (Int) -> Unit) {
-    CategoryList(
-        categoryList = CategoryListSample,
-        onItemClick = { categoryIndex ->
-            onCategoryClicked(categoryIndex)
+fun CategoryMainScreen(
+    onCategoryClicked: (Int) -> Unit,
+    viewModel: CategoryViewModel = hiltViewModel()
+) {
+    val uiState by produceState(initialValue = UiState<List<String>>(isLoading = true)) {
+        val result = viewModel.categoryList
+        value = if(result is Result.Success) {
+            UiState(data = result.data)
+        } else {
+            UiState(isError = true)
         }
-    )
-}
+    }
 
-@Composable
-fun CategoryList(categoryList: List<String>, onItemClick: (Int) -> Unit) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(categoryList.size) { index ->
-            CategoryListItem(
-                categoryName = categoryList[index],
-                onClick = {
-                    onItemClick(index)
-                }
-            )
-        }
+    when {
+        uiState.isLoading -> LoadingScreen()
+        uiState.data?.isNotEmpty() == true -> CategorySuccess(
+            categoryList = uiState.data ?: listOf(),
+            onItemClick = { categoryIndex -> onCategoryClicked(categoryIndex) }
+        )
+        else -> EmptyScreen(message = "카테고리가 존재하지 않습니다.")
     }
 }
 
