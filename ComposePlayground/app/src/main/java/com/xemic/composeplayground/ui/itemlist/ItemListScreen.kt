@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.xemic.composeplayground.common.model.Result
 import com.xemic.composeplayground.common.model.UiState
-import com.xemic.composeplayground.data.ItemInfo
+import com.xemic.composeplayground.data.model.ItemInfo
 import com.xemic.composeplayground.ui.common.EmptyScreen
 import com.xemic.composeplayground.ui.common.LoadingScreen
 

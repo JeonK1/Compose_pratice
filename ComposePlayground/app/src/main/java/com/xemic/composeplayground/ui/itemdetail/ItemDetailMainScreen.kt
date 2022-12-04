@@ -13,7 +13,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.xemic.composeplayground.common.model.Result
 import com.xemic.composeplayground.common.model.UiState
-import com.xemic.composeplayground.data.ItemInfo
+import com.xemic.composeplayground.data.model.ItemInfo
 import com.xemic.composeplayground.ui.common.EmptyScreen
 import com.xemic.composeplayground.ui.common.LoadingScreen
 

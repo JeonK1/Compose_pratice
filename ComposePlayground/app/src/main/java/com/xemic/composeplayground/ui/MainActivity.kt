@@ -17,13 +17,13 @@ import androidx.navigation.compose.rememberNavController
 import com.xemic.composeplayground.common.ext.navigateSingleTop
 import com.xemic.composeplayground.ui.mypage.MyPageScreen
 import com.xemic.composeplayground.common.theme.ComposePlaygroundTheme
-import com.xemic.composeplayground.data.CategoryListSample
 import com.xemic.composeplayground.ui.category.CategoryMainScreen
 import com.xemic.composeplayground.ui.home.*
 import com.xemic.composeplayground.ui.itemlist.ItemListScreen
 import com.xemic.composeplayground.ui.login.LoginScreen
 import com.xemic.composeplayground.common.model.Result
 import com.xemic.composeplayground.common.model.UiState
+import com.xemic.composeplayground.data.model.CategoryListSample
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

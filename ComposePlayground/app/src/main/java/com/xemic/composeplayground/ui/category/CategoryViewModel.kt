@@ -1,7 +1,7 @@
 package com.xemic.composeplayground.ui.category
 
 import androidx.lifecycle.ViewModel
-import com.xemic.composeplayground.data.ItemRepository
+import com.xemic.composeplayground.data.repository.ItemRepository
 import com.xemic.composeplayground.common.model.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

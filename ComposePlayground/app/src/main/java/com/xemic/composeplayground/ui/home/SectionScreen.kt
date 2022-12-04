@@ -7,7 +7,7 @@ import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.xemic.composeplayground.data.ItemInfo
+import com.xemic.composeplayground.data.model.ItemInfo
 import com.xemic.composeplayground.ui.common.GridList
 
 @Composable

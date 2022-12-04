@@ -2,7 +2,7 @@ package com.xemic.composeplayground.ui.itemlist
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.xemic.composeplayground.data.ItemInfo
+import com.xemic.composeplayground.data.model.ItemInfo
 import com.xemic.composeplayground.ui.common.GridList
 
 @Composable

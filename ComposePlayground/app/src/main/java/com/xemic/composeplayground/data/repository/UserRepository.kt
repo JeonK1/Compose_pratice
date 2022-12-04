@@ -1,5 +1,6 @@
-package com.xemic.composeplayground.data
+package com.xemic.composeplayground.data.repository
 
+import com.xemic.composeplayground.data.datasource.UserRemoteDataSource
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
@@ -7,5 +8,4 @@ class UserRepository @Inject constructor(
 ) {
     fun getUserInfo() =
         remoteDataSource.getUserInfo()
-
 }

@@ -1,5 +1,6 @@
-package com.xemic.composeplayground.data
+package com.xemic.composeplayground.data.datasource
 
+import com.xemic.composeplayground.data.model.ItemInfo
 import javax.inject.Inject
 
 class ItemRemoteDataSource @Inject constructor() {

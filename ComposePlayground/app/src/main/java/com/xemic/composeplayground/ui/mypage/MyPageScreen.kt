@@ -2,16 +2,22 @@ package com.xemic.composeplayground.ui.mypage
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import com.xemic.composeplayground.common.model.UiState
 import com.xemic.composeplayground.common.model.Result
-import com.xemic.composeplayground.data.UserInfo
-import com.xemic.composeplayground.data.UserResponse
+import com.xemic.composeplayground.data.model.UserInfo
+import com.xemic.composeplayground.data.model.UserResponse
 import com.xemic.composeplayground.ui.common.EmptyScreen
 import com.xemic.composeplayground.ui.common.LoadingScreen
 
@@ -38,18 +44,27 @@ fun MyPageScreen(
         uiState.data?.isLogin == true -> uiState.data?.result?.let { userInfo ->
             MyPageSuccess(
                 modifier = modifier,
-                userInfo = userInfo
+                userInfo = userInfo,
+                viewModel = viewModel
             )
         } ?: EmptyScreen(message = "사용자 정보가 존재하지 않습니다")
         else -> EmptyScreen(message = "사용자 정보가 존재하지 않습니다")
     }
 }
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun MyPageSuccess(
     modifier: Modifier = Modifier,
-    userInfo: UserInfo
+    userInfo: UserInfo,
+    viewModel: MyPageViewModel,
 ) {
+    LaunchedEffect(true) {
+         viewModel.fetchSampleImage()
+    }
+
+    val sampleImage = viewModel.sampleImageObserver.observeAsState()
+
     Column(
         modifier = modifier,
     ) {
@@ -62,6 +77,13 @@ fun MyPageSuccess(
                 Text("구매했던 상품")
                 Text("내 쿠폰")
                 Text("문의 내역")
+                sampleImage.value?.let { image ->
+                    GlideImage(
+                        model = image.imageUrl,
+                        contentDescription = image.author,
+                        modifier = modifier.size(300.dp, 300.dp)
+                    )
+                }
                 Text("로그아웃")
             }
         }

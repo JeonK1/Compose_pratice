@@ -14,7 +14,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.xemic.composeplayground.data.ItemInfo
+import com.xemic.composeplayground.data.model.ItemInfo
 import com.xemic.composeplayground.ui.itemdetail.ItemDetailActivity
 
 @Composable

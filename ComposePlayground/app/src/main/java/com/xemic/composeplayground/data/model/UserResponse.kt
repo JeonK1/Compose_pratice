@@ -1,4 +1,4 @@
-package com.xemic.composeplayground.data
+package com.xemic.composeplayground.data.model
 
 data class UserResponse(
     val isLogin: Boolean,
