@@ -10,6 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.xemic.composeplayground.common.theme.Purple
+import com.xemic.composeplayground.common.theme.White
+import com.xemic.composeplayground.ui.iconpack.Category
+import com.xemic.composeplayground.ui.iconpack.Home
+import com.xemic.composeplayground.ui.iconpack.IconPack
+import com.xemic.composeplayground.ui.iconpack.MyPage
 
 @Composable
 fun MyBottomNavigation(
@@ -19,7 +25,9 @@ fun MyBottomNavigation(
     currentScreen: CommonNavigateItem
 ) {
     BottomNavigation(
-        modifier = modifier
+        modifier = modifier,
+        backgroundColor = Purple,
+        contentColor = White
     ) {
         allScreens.forEach { screen ->
             BottomNavigationItem(
@@ -73,21 +81,21 @@ sealed interface BottomNavigateItem: CommonNavigateItem {
         override val route = "home"
         override val bottomNavRoute = route
         override var appBarName = "Jasa Mall"
-        override val icon = Icons.Default.Call
+        override val icon = IconPack.Home
     }
 
     object Category: BottomNavigateItem {
         override val route = "category"
         override val bottomNavRoute = route
         override var appBarName = "브랜드 카테고리"
-        override val icon = Icons.Default.Call
+        override val icon = IconPack.Category
     }
 
     object MyPage: BottomNavigateItem {
         override val route = "my_page"
         override val bottomNavRoute = route
         override var appBarName = "내 정보"
-        override val icon = Icons.Default.Call
+        override val icon = IconPack.MyPage
     }
 }
 

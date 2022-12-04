@@ -51,7 +51,7 @@ fun TopBarItem(
         Text(
             modifier = modifier
                 .wrapContentHeight()
-                .padding(bottom = 12.dp)
+                .padding(vertical = 8.dp)
                 .selectable(
                     selected = selected,
                     onClick = onClick,
