@@ -1,7 +1,9 @@
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,7 +20,8 @@ fun HomeSuccess(
     modifier: Modifier = Modifier,
     currentSection: Section,
     onSectionChanged: (Int) -> Unit,
-    sectionList: List<Section>
+    sectionList: List<Section>,
+    scrollState: LazyGridState
 ) {
     Column {
         TopSectionBar(
@@ -31,7 +34,8 @@ fun HomeSuccess(
 
         SectionScreen(
             modifier = modifier,
-            currentSection = currentSection
+            currentSection = currentSection,
+            scrollState = scrollState
         )
     }
 }

@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.xemic.composeplayground.data.CategoryListSample
 
 @Composable
-fun CategoryScreen(onCategoryClicked: (Int) -> Unit) {
+fun CategoryMainScreen(onCategoryClicked: (Int) -> Unit) {
     CategoryList(
         categoryList = CategoryListSample,
         onItemClick = { categoryIndex ->
@@ -49,5 +49,5 @@ fun CategoryListItem(categoryName: String, onClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun CategoryScreenPreview() {
-    CategoryScreen(onCategoryClicked = { })
+    CategoryMainScreen(onCategoryClicked = { })
 }

@@ -17,7 +17,7 @@ fun HomeEmpty(
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = "아이템이 존재하지 않습니다."
+            text = "제품이 존재하지 않습니다."
         )
     }
 }

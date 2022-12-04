@@ -3,17 +3,20 @@ package com.xemic.composeplayground.ui.home
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.xemic.composeplayground.data.ItemInfo
-import com.xemic.composeplayground.data.ItemInfoListSample
 import com.xemic.composeplayground.ui.common.GridList
-import kotlin.random.Random
 
 @Composable
-fun SectionScreen(modifier: Modifier = Modifier, currentSection: Section) {
+fun SectionScreen(
+    modifier: Modifier = Modifier,
+    currentSection: Section,
+    scrollState: LazyGridState
+) {
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -21,7 +24,8 @@ fun SectionScreen(modifier: Modifier = Modifier, currentSection: Section) {
     ) {
         GridList(
             modifier = modifier,
-            data = currentSection.itemList
+            data = currentSection.itemList,
+            scrollState = scrollState
         )
     }
 }

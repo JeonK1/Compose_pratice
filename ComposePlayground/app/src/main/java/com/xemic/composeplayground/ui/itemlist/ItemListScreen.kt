@@ -10,7 +10,7 @@ import com.xemic.composeplayground.ui.common.GridList
 @Composable
 fun ItemListScreen(
     modifier: Modifier = Modifier,
-    data: List<ItemInfo>
+    data: List<ItemInfo>,
 ) {
     GridList(
         modifier = modifier,

@@ -3,7 +3,9 @@ package com.xemic.composeplayground.ui.common
 import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -19,13 +21,15 @@ import com.xemic.composeplayground.ui.itemdetail.ItemDetailActivity
 @Composable
 fun GridList(
     modifier: Modifier = Modifier,
-    data: List<ItemInfo>
+    data: List<ItemInfo>,
+    scrollState: LazyGridState = LazyGridState()
 ) {
     val context = LocalContext.current
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        state = scrollState
     ) {
         items(data.size) { index ->
             GridListItem(

@@ -1,11 +1,10 @@
 package com.xemic.composeplayground
 
-import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -16,18 +15,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.xemic.composeplayground.common.navigateSingleTop
-import com.xemic.composeplayground.ui.category.CategoryScreen
 import com.xemic.composeplayground.ui.mypage.MyPageScreen
 import com.xemic.composeplayground.common.theme.ComposePlaygroundTheme
 import com.xemic.composeplayground.data.CategoryListSample
 import com.xemic.composeplayground.data.ItemInfoListSample
 import com.xemic.composeplayground.ui.*
+import com.xemic.composeplayground.ui.category.CategoryMainScreen
 import com.xemic.composeplayground.ui.home.*
 import com.xemic.composeplayground.ui.itemlist.ItemListScreen
 import com.xemic.composeplayground.ui.login.LoginScreen
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import kotlin.text.Typography.section
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -43,6 +41,8 @@ class MainActivity : ComponentActivity() {
 fun MainAppScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
+    val coroutineScope = rememberCoroutineScope()
+    val homeScrollState = rememberLazyGridState()
     val homeUiState by produceState(initialValue = HomeViewModel.UiState(isLoading = true)) {
         val itemListResult = viewModel.sectionList
         value = if(itemListResult is HomeViewModel.Result.Success) {
@@ -84,16 +84,22 @@ fun MainAppScreen(
                 composable(route = BottomNavigateItem.Home.route) {
                     HomeMainScreen(
                         uiState = homeUiState,
+                        scrollState = homeScrollState,
                         currentSectionIndex = currentSectionIndex,
                         onSectionChanged = { index ->
                             currentSectionIndex = index
-                        },
+
+                            // reset scrollState
+                            coroutineScope.launch {
+                                homeScrollState.scrollToItem(0)
+                            }
+                        }
                     )
                 }
 
                 // Category 화면
                 composable(route = BottomNavigateItem.Category.route) {
-                    CategoryScreen(
+                    CategoryMainScreen(
                         onCategoryClicked = { categoryIndex ->
                             navController.navigateSingleTop(
                                 CommonNavigateItem.CategoryList.makeRouteWithArgs(CategoryListSample[categoryIndex])
