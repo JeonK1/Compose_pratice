@@ -55,7 +55,7 @@ fun ItemDetailSuccess(
             modifier = modifier.size(300.dp, 300.dp)
         )
         Text(
-            text = itemInfo.brandName
+            text = itemInfo.categoryInfo.categoryName
         )
         Text(
             text = itemInfo.itemName

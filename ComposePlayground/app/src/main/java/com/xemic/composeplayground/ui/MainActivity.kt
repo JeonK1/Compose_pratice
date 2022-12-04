@@ -23,7 +23,6 @@ import com.xemic.composeplayground.ui.itemlist.ItemListScreen
 import com.xemic.composeplayground.ui.login.LoginScreen
 import com.xemic.composeplayground.common.model.Result
 import com.xemic.composeplayground.common.model.UiState
-import com.xemic.composeplayground.data.model.CategoryListSample
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -100,9 +99,9 @@ fun MainAppScreen(
                 // Category 화면
                 composable(route = BottomNavigateItem.Category.route) {
                     CategoryMainScreen(
-                        onCategoryClicked = { categoryIndex ->
+                        onCategoryClicked = { categoryNo ->
                             navController.navigateSingleTop(
-                                CommonNavigateItem.CategoryList.makeRouteWithArgs(CategoryListSample[categoryIndex])
+                                CommonNavigateItem.CategoryList.makeRouteWithArgs(categoryNo)
                             )
                         }
                     )
@@ -125,9 +124,9 @@ fun MainAppScreen(
                     route = CommonNavigateItem.CategoryList.route,
                     arguments = CommonNavigateItem.CategoryList.arguments
                 ) {
-                    it.arguments?.getString(CommonNavigateItem.CategoryList.categoryName)?.let { categoryName ->
+                    it.arguments?.getInt(CommonNavigateItem.CategoryList.categoryNo)?.let { categoryNo ->
                         ItemListScreen(
-                            categoryName = categoryName
+                            categoryNo = categoryNo
                         )
                     }
                 }

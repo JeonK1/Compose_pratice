@@ -1,5 +1,6 @@
 package com.xemic.composeplayground.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
@@ -9,7 +10,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.xemic.composeplayground.common.theme.Gray900
+import com.xemic.composeplayground.common.theme.Gray400
+import com.xemic.composeplayground.common.theme.White
 
 @Composable
 fun MyTopBar(currentScreen: CommonNavigateItem) {
@@ -17,9 +19,10 @@ fun MyTopBar(currentScreen: CommonNavigateItem) {
         text = currentScreen.appBarName,
         textAlign = TextAlign.Center,
         fontSize = 18.sp,
-        color = Gray900,
+        color = Gray400,
         modifier = Modifier
             .fillMaxWidth()
+            .background(White)
             .padding(12.dp),
     )
 }

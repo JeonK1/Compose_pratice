@@ -14,11 +14,11 @@ import com.xemic.composeplayground.ui.common.LoadingScreen
 @Composable
 fun ItemListScreen(
     modifier: Modifier = Modifier,
-    categoryName: String,
+    categoryNo: Int,
     viewModel: ItemListViewModel = hiltViewModel()
 ) {
     val uiState by produceState(initialValue = UiState<List<ItemInfo>>(isLoading = true)) {
-        val result = viewModel.getItemListByCategory(categoryName)
+        val result = viewModel.getItemListByCategoryNo(categoryNo)
         value = if(result is Result.Success) {
             UiState(data = result.data)
         } else {

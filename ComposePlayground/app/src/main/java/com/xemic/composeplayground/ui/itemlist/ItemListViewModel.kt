@@ -11,9 +11,9 @@ import javax.inject.Inject
 class ItemListViewModel @Inject constructor(
     private val repository: ItemRepository
 ): ViewModel() {
-    fun getItemListByCategory(categoryName: String): Result<List<ItemInfo>> =
+    fun getItemListByCategoryNo(categoryNo: Int): Result<List<ItemInfo>> =
         try {
-            val categories = repository.getItemListByCategory(categoryName)
+            val categories = repository.getItemListByCategoryNo(categoryNo)
             Result.Success(categories)
         } catch (exception: Exception) {
             Result.Error(exception)

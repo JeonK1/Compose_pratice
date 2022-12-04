@@ -27,9 +27,9 @@ class ItemRepository @Inject constructor(
     fun getItem(itemNo: Int) =
         getItemListAll().find { it.itemNo == itemNo }
 
-    fun getItemListByCategory(categoryName: String) =
-        getItemListAll().filter { it.brandName == categoryName }
+    fun getItemListByCategoryNo(categoryNo: Int) =
+        getItemListAll().filter { it.categoryInfo.categoryNo == categoryNo }
 
     fun getCategoryList() =
-        getItemListAll().map { it.brandName }.toSet().toList()
+        getItemListAll().map { it.categoryInfo }.toSet().toList()
 }

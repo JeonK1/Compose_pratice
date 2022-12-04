@@ -49,18 +49,17 @@ sealed interface CommonNavigateItem {
 
     object CategoryList: CommonNavigateItem {
         const val baseRoute = "category_list"
-        const val categoryName = "category_name"
+        const val categoryNo = "category_no"
 
-        override val route = makeRouteWithArgs("{$categoryName}")
+        override val route = "$baseRoute/{$categoryNo}"
         override val bottomNavRoute = BottomNavigateItem.Category.route
         override var appBarName = "카테고리별 정보"
         val arguments = listOf(
-            navArgument(categoryName) { type = NavType.StringType }
+            navArgument(categoryNo) { type = NavType.IntType }
         )
 
-        fun makeRouteWithArgs(categoryName: String): String {
-            appBarName = categoryName
-            return "$baseRoute/$categoryName"
+        fun makeRouteWithArgs(categoryNo: Int): String {
+            return "$baseRoute/$categoryNo"
         }
     }
 }
