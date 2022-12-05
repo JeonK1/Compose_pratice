@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
+import com.xemic.composeplayground.common.ext.toStringDecimalFormat
 import com.xemic.composeplayground.common.theme.Black
 import com.xemic.composeplayground.common.theme.Blue500
 import com.xemic.composeplayground.common.theme.Gray1000
@@ -98,7 +99,7 @@ fun GridListItem(
                 )
                 Row {
                     Text(
-                        text = "${itemInfo.price}",
+                        text = itemInfo.price.toStringDecimalFormat(),
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 16.sp,
                         color = Black,
