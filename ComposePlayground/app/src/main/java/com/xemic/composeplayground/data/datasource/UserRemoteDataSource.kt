@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class UserRemoteDataSource @Inject constructor() {
 //    fun getUserInfo() = UserResponse(false)
-    fun getUserInfo() = UserResponse(true, UserInfo("xemic"))
+    fun getUserInfo() = UserResponse(true, UserInfo("전계원"))
 }

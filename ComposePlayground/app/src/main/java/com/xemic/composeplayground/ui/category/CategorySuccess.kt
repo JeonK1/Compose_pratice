@@ -52,9 +52,9 @@ fun CategoryList(
                 if (index < ((categoryList.size - 1) / 2) * 2) {
                     Divider(
                         color = Gray1000,
+                        thickness = 1.dp,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(9.dp)
                             .padding(vertical = 4.dp)
                     )
                 }
