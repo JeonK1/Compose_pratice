@@ -106,5 +106,6 @@ val BottomNavScreens = listOf(
 )
 
 val CommonNavScreens = listOf(
-    CommonNavigateItem.CategoryList
+    CommonNavigateItem.CategoryList,
+    CommonNavigateItem.Login
 )
