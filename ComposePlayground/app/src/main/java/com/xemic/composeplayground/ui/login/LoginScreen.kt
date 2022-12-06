@@ -19,7 +19,8 @@ import com.xemic.composeplayground.ui.common.FullColoredButton
 
 @Composable
 fun LoginScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onLoginSuccess: () -> Unit
 ) {
     var id by rememberSaveable { mutableStateOf("") }
     var pw by rememberSaveable { mutableStateOf("") }
@@ -46,7 +47,7 @@ fun LoginScreen(
             text = "로그인",
             fontSize = 16.sp,
             onClick = {
-                // Todo : 로그인 로직
+                onLoginSuccess()
             }
         )
         Spacer(modifier = Modifier.height(20.dp))
@@ -99,5 +100,7 @@ fun LoginScreen(
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen()
+    LoginScreen(
+        onLoginSuccess = {}
+    )
 }

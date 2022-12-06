@@ -1,6 +1,7 @@
 package com.xemic.composeplayground.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
@@ -50,6 +51,8 @@ fun MainAppScreen(
             UiState(isError = true)
         }
     }
+
+    var isLogin = rememberSaveable { false }
 
     ComposePlaygroundTheme {
         val navController = rememberNavController()
@@ -109,14 +112,21 @@ fun MainAppScreen(
 
                 // 마이페이지 화면
                 composable(route = BottomNavigateItem.MyPage.route) {
-                    MyPageScreen(
-                        navigateToLoginScreen = { navController.navigateSingleTop(CommonNavigateItem.Login.route) }
-                    )
+                    if (isLogin) {
+                        MyPageScreen()
+                    } else {
+                        navController.navigateSingleTop(CommonNavigateItem.Login.route)
+                    }
                 }
 
                 // 로그인 화면
                 composable(route = CommonNavigateItem.Login.route) {
-                    LoginScreen()
+                    LoginScreen(
+                        onLoginSuccess = {
+                            isLogin = true
+                            navController.navigateSingleTop(BottomNavigateItem.MyPage.route)
+                        }
+                    )
                 }
 
                 // 아이템 리스트 화면
